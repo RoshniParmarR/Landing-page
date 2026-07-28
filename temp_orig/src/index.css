@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --font-display: 'Poppins', sans-serif;
+  --font-mono: 'Poppins', sans-serif;
+
+  /* Strictly monochrome color palette */
+  --color-brand-bg: #ffffff;
+  --color-brand-text: #000000;
+  --color-brand-gray-light: #f9f9f9;
+  --color-brand-gray-mid: #e5e5e5;
+  --color-brand-gray-dark: #737373;
+  --color-brand-border: #e5e5e5;
+
+  --animate-slide-down: slide-down 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-down: fade-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+@layer base {
+  body {
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Sharp edges globally */
+  * {
+    border-radius: 0px !important;
+  }
+
+  /* Custom minimal scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #e5e5e5;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #737373;
+  }
+}
+
+/* Custom Grids & Animation Utilities */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.grid-bg-dense {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Flow line animation */
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animate-flow-dash {
+  stroke-dasharray: 8 4;
+  animation: flowDash 2s linear infinite;
+}
+
+/* Scanning line animation */
+@keyframes gridScan {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-grid-scan {
+  animation: gridScan 6s linear infinite;
+}
+
+/* Counter keyframe */
+@keyframes floatItem {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-slow {
+  animation: floatItem 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: floatItem 4s ease-in-out infinite;
+}
+
+/* Custom reveal mask styles */
+.mask-gradient {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.mask-gradient-y {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 500 !important;
+  font-size: 36px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 1024px) {
+  .section-heading {
+    font-size: 48px;
+  }
+}
